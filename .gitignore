@@ -36,3 +36,7 @@ yarn-error.log*
 
 # IDE
 .idea
+
+# GraphQL
+.graphqlconfig
+schema.graphql
