@@ -14,7 +14,7 @@ const BlogPost: NextPage<Props> = ({ id }) => {
       </Head>
 
       <main>
-        <h1>I'm blog post with id {id}</h1>
+        <h1>I&apos;m blog post with id {id}</h1>
       </main>
     </div>
   );

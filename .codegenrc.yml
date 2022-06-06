@@ -1,0 +1,6 @@
+schema: https://graphql.contentful.com/content/v1/spaces/7bzo6ocd98xl/environments/master?access_token=5pBvUN2g9nfHFeeHfnI_xUKuwzu4J67zulI1RLms6IY
+generates:
+  ./contentful-types.ts:
+    plugins:
+      - typescript
+      - typescript-operations

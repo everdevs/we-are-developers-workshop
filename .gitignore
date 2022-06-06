@@ -40,3 +40,4 @@ yarn-error.log*
 # GraphQL
 .graphqlconfig
 schema.graphql
+contentful-types.ts
