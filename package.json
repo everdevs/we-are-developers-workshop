@@ -5,11 +5,13 @@
   "scripts": {
     "predev": "graphql-codegen",
     "dev": "next dev",
+    "prebuild": "graphql-codegen",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.7",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",
     "next": "12.1.5",
