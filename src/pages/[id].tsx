@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { initializeApollo } from '@/services/apollo';
 import type { Post, PostCollection } from '@/types/contentful-types';
+import { REVALIDATE } from '@/config/config';
 
 import BlogPostIdsQuery from '@/queries/post-collection-ids.graphql';
 import BlogPostQuery from '@/queries/post.graphql';
@@ -71,11 +72,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!post) {
     return {
       notFound: true,
+      revalidate: REVALIDATE,
     };
   }
 
   return {
     props: post,
+    revalidate: REVALIDATE,
   };
 };
 
@@ -93,7 +96,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: data.postCollection.items.map((post) => ({
       params: { id: String(post?.id) },
     })),
-    fallback: false,
+    fallback: 'blocking',
   };
 };
 

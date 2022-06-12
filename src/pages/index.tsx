@@ -5,6 +5,7 @@ import type { FC } from 'react';
 
 import { initializeApollo } from '@/services/apollo';
 import type { Post, PostCollection } from '@/types/contentful-types';
+import { REVALIDATE } from '@/config/config';
 
 import Query from '@/queries/post-collection-id-description.graphql';
 
@@ -70,6 +71,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       posts: data.postCollection.items,
     },
+    revalidate: REVALIDATE,
   };
 };
 
