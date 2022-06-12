@@ -1,0 +1,48 @@
+.main {
+  min-height: 100vh;
+}
+
+.hero {
+  padding: 11rem 0;
+  background-image: linear-gradient(45deg, #62bdfc 0%, #8490ff 100%);
+}
+
+.hero > h1 {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 4.8rem;
+  color: #fff;
+}
+
+.link {
+  color: #222;
+  line-height: 1.2em;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #69b4fd;
+}
+
+.blog-post {
+  max-width: 72rem;
+  margin: 5rem auto;
+}
+
+.blog-post > p {
+  color: #777;
+  font-size: 1.4rem;
+}
+
+.blog-post > p.description {
+  font-style: italic;
+  font-weight: bolder;
+  margin-bottom: 5rem;
+}
+
+.blog-post-footer {
+  text-align: right;
+  font-style: italic;
+}

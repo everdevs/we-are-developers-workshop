@@ -1,0 +1,17 @@
+query PostById($id: Int!) {
+    postCollection(
+        where: { id: $id }
+        limit: 1
+        preview: false
+    ) {
+        items {
+            sys {
+                publishedAt
+            }
+            id
+            title
+            description
+            content
+        }
+    }
+}

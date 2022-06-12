@@ -1,8 +1,0 @@
-query PostCollection {
-    postCollection(preview: false) {
-        items {
-            id
-            data
-        }
-    }
-}
