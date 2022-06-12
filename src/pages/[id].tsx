@@ -57,21 +57,19 @@ const BlogPostPage: NextPage<Post> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = Number(params?.id);
+  const id = params?.id;
 
   console.log('[id] page...', id);
 
   const client = initializeApollo();
   const { data } = await client.query<{
-    postCollection: PostCollection;
+    post: Post;
   }>({
     query: BlogPostQuery,
     variables: { id },
   });
 
-  const [post] = data.postCollection.items;
-
-  if (!post) {
+  if (!data.post) {
     return {
       notFound: true,
       revalidate: REVALIDATE,
@@ -79,7 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 
   return {
-    props: post,
+    props: data.post,
     revalidate: REVALIDATE,
   };
 };
@@ -95,7 +93,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.postCollection.items.map((post) => ({
-      params: { id: String(post?.id) },
+      params: { id: post?.sys.id },
     })),
     fallback: 'blocking',
   };
