@@ -33,10 +33,9 @@ const HomePage: NextPage<HomePageProps> = ({ posts }) => {
 };
 
 const BlogPost: FC<Post> = ({
-  id,
   title,
   description,
-  sys: { publishedAt },
+  sys: { id, publishedAt },
 }) => {
   const date = new Date(publishedAt).toDateString();
   const time = new Date(publishedAt).toLocaleTimeString('en-GB');

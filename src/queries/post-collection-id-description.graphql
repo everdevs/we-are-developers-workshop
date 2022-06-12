@@ -5,9 +5,9 @@ query PostCollection {
     ) {
         items {
             sys {
+                id
                 publishedAt
             }
-            id
             title
             description
         }

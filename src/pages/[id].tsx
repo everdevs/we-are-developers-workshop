@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { initializeApollo } from '@/services/apollo';
-import type { Post, PostCollection } from '@/types/contentful-types';
+import type { Post } from '@/types/contentful-types';
 
 import Query from '@/queries/post.graphql';
 
@@ -55,35 +55,33 @@ const BlogPostPage: NextPage<Post> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = Number(params?.id);
+  const id = params?.id;
 
   const client = initializeApollo();
   const { data } = await client.query<{
-    postCollection: PostCollection;
+    post: Post;
   }>({
     query: Query,
     variables: { id },
   });
 
-  const [post] = data.postCollection.items;
-
-  if (!post) {
+  if (!data.post) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: post,
+    props: data.post,
   };
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [
-      { params: { id: '1' } },
-      { params: { id: '2' } },
-      { params: { id: '3' } },
+      { params: { id: '6Pg22gVhxAdmyHcEHquWT8' } },
+      { params: { id: '4HPs8RGWCm2jngdqJPJijz' } },
+      { params: { id: '66ErFf2hgVmmDxUj6EUchr' } },
     ],
     fallback: false,
   };
