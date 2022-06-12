@@ -1,17 +1,13 @@
-query PostById($id: Int!) {
-    postCollection(
-        where: { id: $id }
-        limit: 1
+query PostById($id: String!) {
+    post(
+        id: $id
         preview: false
     ) {
-        items {
-            sys {
-                publishedAt
-            }
-            id
-            title
-            description
-            content
+        sys {
+            publishedAt
         }
+        title
+        description
+        content
     }
 }

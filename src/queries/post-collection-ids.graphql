@@ -4,7 +4,9 @@ query PostCollection {
         preview: false
     ) {
         items {
-            id
+            sys {
+                id
+            }
         }
     }
 }
