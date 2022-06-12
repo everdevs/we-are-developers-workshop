@@ -59,8 +59,6 @@ const BlogPost: FC<Post> = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  console.log('main page...');
-
   const client = initializeApollo();
   const { data } = await client.query<{
     postCollection: PostCollection;

@@ -2,11 +2,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    console.log('req.body --->', JSON.stringify(JSON.parse(req.body), null, 2));
     const { id } = JSON.parse(req.body);
 
-    await res.unstable_revalidate('/');
-    await res.unstable_revalidate(`/${id}`);
+    await Promise.all([
+      res.unstable_revalidate('/'),
+      res.unstable_revalidate(`/${id}`),
+    ]);
 
     return res.json({ revalidated: true });
   } catch (err) {
