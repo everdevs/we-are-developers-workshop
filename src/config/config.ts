@@ -1,1 +1,1 @@
-export const REVALIDATE = 60; // 1 minute
+export const REVALIDATE = 365 * 24 * 60 * 60; // 1 year
