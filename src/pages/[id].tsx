@@ -59,6 +59,8 @@ const BlogPostPage: NextPage<Post> = ({
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = Number(params?.id);
 
+  console.log('[id] page...', id);
+
   const client = initializeApollo();
   const { data } = await client.query<{
     postCollection: PostCollection;
