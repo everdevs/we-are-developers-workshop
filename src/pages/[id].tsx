@@ -82,6 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
+// TODO: Do not forget to cleanup this fetching method
 export const getStaticPaths: GetStaticPaths = async () => {
   const client = initializeApollo();
   const { data } = await client.query<{
@@ -89,8 +90,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }>({
     query: BlogPostIdsQuery,
   });
-
-  console.log(data.postCollection.items[0]?.id);
 
   return {
     paths: data.postCollection.items.map((post) => ({
