@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { initializeApollo } from '@/services/apollo';
 import type { Post, PostCollection } from '@/types/contentful-types';
 
-import Query from '@/queries/post.graphql';
+import BlogPostIdsQuery from '@/queries/post-collection-ids.graphql';
+import BlogPostQuery from '@/queries/post.graphql';
 
 import styles from '@/styles/blog-post.module.css';
 
@@ -61,7 +62,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await client.query<{
     postCollection: PostCollection;
   }>({
-    query: Query,
+    query: BlogPostQuery,
     variables: { id },
   });
 
@@ -78,13 +79,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const client = initializeApollo();
+  const { data } = await client.query<{
+    postCollection: PostCollection;
+  }>({
+    query: BlogPostIdsQuery,
+  });
+
+  console.log(data.postCollection.items[0]?.id);
+
   return {
-    paths: [
-      { params: { id: '1' } },
-      { params: { id: '2' } },
-      { params: { id: '3' } },
-    ],
+    paths: data.postCollection.items.map((post) => ({
+      params: { id: String(post?.id) },
+    })),
     fallback: false,
   };
 };
